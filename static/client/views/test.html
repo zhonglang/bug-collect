@@ -1,0 +1,31 @@
+<div>
+    <div style="margin-top: 5px;margin-right: 10px">
+        <button class="btn btn-primary"  ng-click="add()">添加用户</button><br/>
+    </div>
+    <br/>
+
+   <!-- <table class="table table-bordered">
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="i in data">
+            <td>{{i.name}}</td>
+            <td>{{i.sex}}</td>
+            <td>{{i.age}}</td>
+            <td>
+                <button style="border: none;background: #fff" ng-click="del(i.id)">删除</button>
+                <button style="border: none;background: #fff" ng-click="modify(i.id)">修改</button>
+            </td>
+
+        </tr>
+    </table>
+    使用说明:
+    指令 cw-adaptbody : 设置盒子高度（屏幕高度-180=盒子高度）
+    指令 gridOption   : 表格控件-->
+    <div cw-adaptbody="100" ng-grid="gridOption"></div>
+
+
+</div>

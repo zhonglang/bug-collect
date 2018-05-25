@@ -1,0 +1,163 @@
+<div class="container-fluid"
+     style="padding: 20px 25px;padding-bottom: 10px;;height:100%;overflow-y: auto;overflow-x: hidden">
+    <fieldset class="fieldsetName">
+        <legend style="width: 5em;border: none">查询条件</legend>
+        <div class="container-fluid">
+            <div style="float:left;">
+                <label style="float:left;margin-top: 5px;">类型：</label>
+                <select style="width:100px;float:left;" class="form-control" ng-model="filter.bug_type">
+                    <option value="">全部</option>
+                    <option value="平台">平台</option>
+                    <option value="APP">APP</option>
+                    <option value="环境">环境</option>
+                </select>
+            </div>
+            <div style="float:left;">
+                <label style="float:left;margin-top: 5px;">状态：</label>
+                <select style="width:100px;float:left;" class="form-control" ng-model="filter.bug_state">
+                    <option value="">全部</option>
+                    <option value="进行中">进行中</option>
+                    <option value="已完成">已完成</option>
+                </select>
+            </div>
+            <div style="float:left;">
+                <label style="float:left;margin-top: 5px;margin-left: 5px">创建者：</label>
+                <input type="text" ng-model="filter.create_by"
+                       style="width:100px;float:left;"
+                       class="form-control"/>
+            </div>
+            <div style="float:left;">
+                <label style="float:left;margin-top: 5px;margin-left: 5px">创建时间：</label>
+                <div style="float: left">
+                    <input type="text" ng-model="filter.whenStart" cw-datepicker
+                           style="width:100px;display: inline-block"
+                           class="form-control"/>——<input type="text" ng-model="filter.whenEnd" cw-datepicker
+                                                          style="width:100px;display: inline-block"
+                                                          class="form-control"/>
+                </div>
+            </div>
+             <div style="float:left;">
+                <label style="float:left;margin-top: 5px;margin-left: 5px">关键字：</label>
+                <input type="text" ng-model="filter.bug_key"
+                       style="width:100px;float:left;"
+                       class="form-control"/>
+            </div>
+            <div style="float:left;margin-left:15px;">
+                <button ng-click="search()" class="btn btn-sm btn-primary">查询</button>
+            </div>
+            <div style="float:right;margin-left:15px;">
+                <button ng-click="updown()" class="btn btn-sm btn-primary">导出Excel</button>
+            </div>
+            <div style="float:right;margin-left:15px;">
+                <button ng-click="add()" class="btn btn-sm btn-info">添加</button>
+            </div>
+        </div>
+    </fieldset>
+    <!--<div cw-adaptbody="90" ng-grid="gridOption"
+         style="overflow-x: hidden; overflow-y: auto; width: 100%"></div>-->
+    <div rgtable='rgoption'></div>
+
+    <div class="bg" ng-if="show_detail" ng-click="hidde($event)">
+        <div class="bg_box">
+            <header></header>
+            <table>
+                <tr>
+                    <td style="width:30%">类型：</td>
+                    <td style="width:70%">{{ detail_data.bug_type }}</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">客户：</td>
+                    <td style="width:70%">{{ detail_data.customer }}</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">问题标题：</td>
+                    <td style="width:70%">{{ detail_data.bug_title }}</td>
+                </tr>
+                <tr>
+                    <td>问题内容:</td>
+                    <td>{{ detail_data.bug_content }}</td>
+                </tr>
+                <tr>
+                    <td>类型说明:</td>
+                    <td>{{ detail_data.bug_content_type }}</td>
+                </tr>
+                <tr>
+                    <td>状态:</td>
+                    <td>{{ detail_data.bug_state }}</td>
+                </tr>
+                <tr>
+                    <td>解决方法:</td>
+                    <td>{{ detail_data.bug_resolvent }}</td>
+                </tr>
+                <tr>
+                    <td>创建者:</td>
+                    <td>{{ detail_data.create_by }}</td>
+                </tr>
+                <tr>
+                    <td>提交时间:</td>
+                    <td>{{ detail_data.when_create }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+    label{
+        margin-left: 5px;
+    }
+
+    .bg {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .action.bg_box {
+        transform: translateX(0);
+    }
+
+    .bg_box {
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+        padding: 10px 30px 30px;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: all 0.5s ease;
+        position: fixed;
+        right: 0;
+        min-width: 400px;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        background-color: #fff;
+    }
+
+    .bg_box header {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .bg_box table td {
+        word-wrap: break-word;
+        white-space: normal;
+        padding: 10px 5px;
+    }
+
+    .bg_box table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .bg_box table tr td:first-child {
+        width: 30%;
+        vertical-align: top;
+    }
+
+    .bg_box table tr td:last-child {
+        width: 70%;
+    }
+</style>
